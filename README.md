@@ -5,11 +5,17 @@
 
 ## About this project
 
-SyntactiQl (pronounced Syntactical) was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _SyntactiQL_,
-which is nothing other than a coherent set of methods for creating all the necessary parts of a GraphQL server. In short, this project aims to provide a more
-customizable Backend-As-A-Library.
+SyntactiQL (pronounced Syntactical) was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _SyntactiQL_, which is nothing other than a coherent set of methods for creating all the necessary parts of a GraphQL server. In short, this project aims to provide a more customizable Backend-As-A-Library.
 
 All you have to do is create your sequelize models, run the transformers, and start your server. With the example code, you can be testing queries in minutes. It creates your resolvers, DataLoaders, sequelize queries, etc.
+
+## Philosophy
+
+The parts of a well designed program are typically modular and de-coupled. Replacing a part of a program which is too tightly bound to another part spells trouble for maintainers.
+
+So why would I write a project that espouses the tightest coupling between the models and controllers, between the API and the backend, and between sequelize and GraphQL servers? The answer is simply because of *convenience*. What's even better than a replaceable backend is a backend which affords the developers flexibility in defining their models continuously and an API which responds directly to these changes.
+
+I believe that a project like create-react-app or even Expo are efficient because a certain level of configuration is assumed. Of course, these assumptions are a trade-off. A blank project is fully configurable, but often leads to creating the same boilerplate again and again.
 
 ## Components
 
@@ -25,6 +31,8 @@ _Instant Cloud Integration_ This service will seamlessly integrate with cloud se
 
 _Sequelize_ For now, I have coupled Sequelize to this project, but the file system is prepared for other ORMS. I would even like to integrate MongoDB in soon.
 
+_Mocha_ is a mature library for testing ndoe backends. 
+
 ## Getting Started
 
 For now, the project can only be cloned directly from github. I would like to make this a CLI tool for quicker scaffolding.
@@ -39,7 +47,7 @@ cd SyntactiQL && yarn
 npm install
 
 // make sure to have sequelize-cli intalled globally
-yarn add sequelize-cli -g
+yarn add sequelize-cli mocha -g
 
 // create your models
 sequelize model:create --name User --attributes name:string,state:boolean,birth:date,card:integer
@@ -55,7 +63,7 @@ npm run start:prod
 ```
 
 ## To-Do List
-
+- [ ] A Front-End For Editing Models;
 - [ ] Add Update Methods;  
 - [ ] Add Unit Tests (partially done);  
 - [ ] Add support for Express and Hapi;  
