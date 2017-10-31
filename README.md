@@ -1,9 +1,9 @@
 
-# SyntactiQL (pronounced Syntactical)
+# SyntactiQL
 
 ## About this project
 
-This project was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _SyntactiQL_,
+SyntactiQl (pronounced Syntactical) was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _SyntactiQL_,
 which is nothing other than a coherent set of methods for creating all the necessary parts of a GraphQL server. In short, this project aims to provide a more
 customizable Backend-As-A-Library.
 
@@ -43,11 +43,11 @@ npm run start:prod
 
 ## To-Do List
 
-[ ] Add Update Methods;
-[ ] Add Unit Tests;
-[ ] Add support for Express and Hapi;
-[ ] Add Instant Cloud Integration;
-[ ] Write Logs to File System;
+[ ] Add Update Methods;  
+[ ] Add Unit Tests;  
+[ ] Add support for Express and Hapi;  
+[ ] Add Instant Cloud Integration;  
+[ ] Write Logs to File System;  
 
 ## Gotchas
 
