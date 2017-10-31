@@ -28,7 +28,7 @@ const pad = (s) => {
 }
 
 const loggingLevel = (colors, included, cb, s) => {
-    if (colors && included) {
+    if (colors && included && process.env.NODE_ENV !== 'test') {
         return cb();
     } else if (!included) {
         return null;

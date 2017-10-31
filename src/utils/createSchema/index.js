@@ -25,30 +25,32 @@ import sequelize from '../../config/sequelize';
  * Test the sequelize connection;
  * Resets and clears table data;
  */
-sequelize.authenticate()
-    .then(_ => success('Connection Successful'))
-    .then(_ => {
-        models
-            .map((m, index) => {
-                 db[m].sequelize
-                .query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
-                .then(_ => {
-                    db[m].sync({force: true});
-                })
-                .catch(e => error(e));
-                info(`\t Synced model ${models[index]}`);
-        });
-    })
-    .then(_ => {
-        describe('Sequelize will gracefully close. . .');
-    })
-    .catch(_ => error(`Error Connecting to Database ${config[stage].database}`))
+const buildDB = () => {
+    sequelize.authenticate()
+        .then(_ => success('Connection Successful'))
+        .then(_ => {
+            models
+                .map((m, index) => {
+                    db[m].sequelize
+                    .query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
+                    .then(_ => {
+                        db[m].sync({force: true});
+                    })
+                    .catch(e => error(e));
+                    info(`\t Synced model ${models[index]}`);
+            });
+        })
+        .then(_ => {
+            describe('Sequelize will gracefully close. . .');
+        })
+        .catch(_ => error(`Error Connecting to Database ${config[stage].database}`));
+}
 
 /**
  * Convert sequelize DataTypes to schema.graphql types;
  * @params {name: string, type: string}
  */
-const convertSchemaType = (name, type, required=true) => {
+export const convertSchemaType = (name, type, required=true) => {
     if (name === 'id' && required) {
         let addon = required ? '!' : '';
         return `ID${addon}`;
@@ -144,14 +146,17 @@ let schema = models.map((m, index) => {
 
 // the file name should be configurable;
 (function main() {
-    let file = path.join(__dirname, '../../schema/schema.graphql');
-    fs.writeFile(file, '', () => describe('Cleared Old Contents'));
-    let stream = fs.createWriteStream(file, {flags:'a'});
-    schema.map((el, i) => {
-        stream.write(el);
-        if (i + 1 === schema.length) {
-            success(`\nBuilt ${file}`);
-            stream.end();
-        }
-    });
+    if (process.env.NODE_ENV !== 'test') {
+        buildDB();
+        let file = path.join(__dirname, '../../schema/schema.graphql');
+        fs.writeFile(file, '', () => describe('Cleared Old Contents'));
+        let stream = fs.createWriteStream(file, {flags:'a'});
+        schema.map((el, i) => {
+            stream.write(el);
+            if (i + 1 === schema.length) {
+                success(`\nBuilt ${file}`);
+                stream.end();
+            }
+        });
+    }
 })();
