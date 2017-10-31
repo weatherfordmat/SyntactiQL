@@ -1,0 +1,8 @@
+{
+    "config": {
+        "colors": true,
+        "logging": ["error", "describe", "info", "warning", "success"],
+        "dbLogs": true,
+        "fakerCount": 9500
+    }
+}

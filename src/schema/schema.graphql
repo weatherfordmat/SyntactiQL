@@ -1,0 +1,67 @@
+
+type Animal {
+ id: ID!
+ name: String
+ type: String
+ city: String
+ color: String
+ createdAt: String
+ updatedAt: String
+ UserId: Int
+	Owner: [User]
+}
+
+type Post {
+ id: ID!
+ title: String
+ subtitle: String
+ topic: String
+ article: String
+ published: Boolean
+ paidContent: Boolean
+ createdAt: String
+ updatedAt: String
+ UserId: Int
+	Author: [User]
+}
+
+type User {
+ id: ID!
+ firstName: String
+ lastName: String
+ location: String
+ birthday: String
+ createdAt: String
+ updatedAt: String
+ AnimalId: Int
+ PostId: Int
+	Post: [Post]
+	Animal: [Animal]
+}
+
+type Meta {
+ count: Int 
+}
+
+type Query {
+ 	Animal(id: ID!): Animal
+	Animals(limit: Int, offset: Int, sortField: String, sortOrder: String): [Animal]
+	AnimalsMeta: Meta
+	Post(id: ID!): Post
+	Posts(limit: Int, offset: Int, sortField: String, sortOrder: String): [Post]
+	PostsMeta: Meta
+	User(id: ID!): User
+	Users(limit: Int, offset: Int, sortField: String, sortOrder: String): [User]
+	UsersMeta: Meta
+ 
+}
+
+type Mutation {
+ 	createAnimal(name:String,type:String,city:String,color:String,createdAt:String,updatedAt:String,UserId:Int): Animal
+	deleteAnimal(id: ID!): Animal
+	createPost(title:String,subtitle:String,topic:String,article:String,published:Boolean,paidContent:Boolean,createdAt:String,updatedAt:String,UserId:Int): Post
+	deletePost(id: ID!): Post
+	createUser(firstName:String,lastName:String,location:String,birthday:String,createdAt:String,updatedAt:String,AnimalId:Int,PostId:Int): User
+	deleteUser(id: ID!): User
+ 
+}
