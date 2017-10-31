@@ -9,6 +9,7 @@
     "koa-graphql": "^0.7.3",
     "koa-mount": "^3.0.0",
     "lodash.orderby": "^4.6.0",
+    "mocha": "^4.0.1",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
     "nodemon": "^1.12.1",
@@ -24,6 +25,7 @@
     "init:project": "npm run create:schema && npm run seed",
     "start:dev": "NODE_ENV=development nodemon src/server/entry.js --config nodemon.json",
     "start:prod": "node server",
-    "seed": "NODE_ENV=development node src/seeders/entry"
+    "seed": "NODE_ENV=development node src/seeders/entry",
+    "test": "mocha 'src/**/+(__tests__|tests)/*.+(test|spec).js'"
   }
 }
