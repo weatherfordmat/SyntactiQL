@@ -27,9 +27,20 @@ _Sequelize_ For now, I have coupled Sequelize to this project, but the file syst
 
 ## Getting Started
 
-Make sure you have the sequelize-cli installed globally.
+For now, the project can only be cloned directly from github. I would like to make this a CLI tool for quicker scaffolding.
 
 ``` javascript
+
+git clone https://github.com/weatherfordmat/SyntactiQL.git
+
+cd SyntactiQL && yarn
+
+// if you don't have yarn you can run
+npm install
+
+// make sure to have sequelize-cli intalled globally
+yarn add sequelize-cli -g
+
 // create your models
 sequelize model:create --name User --attributes name:string,state:boolean,birth:date,card:integer
 
