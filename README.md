@@ -1,4 +1,5 @@
 
+![Optional Text](./public/logo.png)
 # SyntactiQL
 
 ## About this project
