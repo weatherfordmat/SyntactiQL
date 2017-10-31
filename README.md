@@ -1,5 +1,5 @@
 
-![Optional Text](./public/logo.png)
+<img width="200px" src="./public/logo.png?raw=true" alt="SyntactiQL Logo"</img>
 # SyntactiQL
 
 ## About this project
