@@ -57,11 +57,12 @@ npm run start:prod
 ## To-Do List
 
 - [ ] Add Update Methods;  
-- [ ] Add Unit Tests;  
+- [ ] Add Unit Tests (partially done);  
 - [ ] Add support for Express and Hapi;  
 - [ ] Add Instant Cloud Integration;  
 - [ ] Write Logs to File System; 
 - [x] Add Logo 
+- [x] Make Schema File Name Configurable
 
 ## Gotchas
 

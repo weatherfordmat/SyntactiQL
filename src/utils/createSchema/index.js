@@ -7,6 +7,10 @@ import db from '../../models';
 import { error, describe, info, success, warning } from '../../utils/log';
 import { pluralize, singularize } from '../strings'
 
+// config
+let options = JSON.parse(
+    fs.readFileSync(__dirname + '/../../../.syntactiqlrc', 'utf-8')
+  )["config"];
 
 // config;
 import config from '../../config/config.json';
@@ -47,7 +51,7 @@ const buildDB = () => {
 }
 
 /**
- * Convert sequelize DataTypes to schema.graphql types;
+ * Convert sequelize DataTypes to ${fileName}.graphql types;
  * @params {name: string, type: string}
  */
 export const convertSchemaType = (name, type, required=true) => {
@@ -148,7 +152,7 @@ let schema = models.map((m, index) => {
 (function main() {
     if (process.env.NODE_ENV !== 'test') {
         buildDB();
-        let file = path.join(__dirname, '../../schema/schema.graphql');
+        let file = path.join(__dirname, `../../schema/${options.schemaName}`);
         fs.writeFile(file, '', () => describe('Cleared Old Contents'));
         let stream = fs.createWriteStream(file, {flags:'a'});
         schema.map((el, i) => {

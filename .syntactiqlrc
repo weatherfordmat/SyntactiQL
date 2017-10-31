@@ -3,6 +3,7 @@
         "colors": true,
         "logging": ["error", "describe", "info", "warning", "success"],
         "dbLogs": true,
-        "fakerCount": 9500
+        "fakerCount": 9500,
+        "schemaName": "schema.graphql"
     }
 }
