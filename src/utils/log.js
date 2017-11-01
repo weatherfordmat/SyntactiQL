@@ -9,7 +9,7 @@ import path from 'path';
 
 
 let config = JSON.parse(
-    fs.readFileSync(__dirname + '/../../.syntactiqlrc', 'utf-8')
+    fs.readFileSync(__dirname + '/../../.tactiqlrc', 'utf-8')
 )["config"];
 
 export const error = (s) => logWrapper('error', chalk.red.bold, s)

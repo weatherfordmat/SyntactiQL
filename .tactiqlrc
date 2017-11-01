@@ -4,6 +4,7 @@
         "logging": ["error", "describe", "info", "warning", "success"],
         "dbLogs": true,
         "fakerCount": 9500,
-        "schemaName": "schema.graphql"
+        "schemaName": "schema.graphql",
+        "sequelize": true
     }
 }

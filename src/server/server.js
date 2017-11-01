@@ -4,9 +4,11 @@ const mount = require('koa-mount');
 const graphqlHTTP = require('koa-graphql');
 
 // utilities;
+import https from 'https';
 import { error, info, success, warning, describe } from '../utils/log';
+import { onServerStart } from '../utils/notifications';
 import { singularize } from '../utils/strings';
-import opn from 'opn';
+import path from 'path';
 
 // schema;
 import schema from '../resolvers';
@@ -15,6 +17,10 @@ import schema from '../resolvers';
 import Dataloader from 'dataloader';
 import loaders from '../loaders'
 import db from '../models';
+
+// constants;
+const imagePath = path.join(__dirname, '../../public/logo.png');
+const PORT = process.env.PORT || 3000;
 
 /**
  * The idea of the server is to be agnostic as possible about what
@@ -28,6 +34,19 @@ import db from '../models';
  * and Elixir and Clojure on the other.
  * 
  */
+
+// add batch loaders;
+let context = {};
+Object.keys(loaders).map(l => {
+    let loaderName = `${singularize(l).toLowerCase()}Loader`.replace(/batch/g, '')
+    context[loaderName] = new Dataloader(keys => loaders[l](keys, db));
+});
+
+let gql = graphqlHTTP({
+    schema,
+    graphiql: process.env.NODE_ENV === 'development',
+    context
+});
 
 const app = new Koa();
 
@@ -46,27 +65,9 @@ app.use((ctx, next) => {
         })
 });
 
-// add batch loaders;
-let context = {};
-Object.keys(loaders).map(l => {
-    let loaderName = `${singularize(l).toLowerCase()}Loader`.replace(/batch/g, '')
-    context[loaderName] = new Dataloader(keys => loaders[l](keys, db));
-});
-
-let gql = graphqlHTTP({
-    schema,
-    graphiql: process.env.NODE_ENV === 'development',
-    context
-});
-
 app.use(mount('/graphql', gql));
 
-app.listen(process.env.PORT || 3000);
-
-// let hasOpened = false;
-// if (process.env.NODE_ENV === 'development' && !hasOpened) {
-//     hasOpened = true;
-//     opn('http://localhost:3000/graphql');
-// }
-
-
+app.listen(PORT, () => {
+    success(`App listening on port ${PORT}`);
+    onServerStart(imagePath, PORT);
+});

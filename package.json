@@ -1,6 +1,9 @@
 {
+  "name": "tactiql",
+  "version": "0.0.1",
   "dependencies": {
     "chalk": "^2.3.0",
+    "cross-env": "^5.1.1",
     "dataloader": "^1.3.0",
     "faker": "^4.1.0",
     "graphql": "^0.11.7",
@@ -12,6 +15,7 @@
     "mocha": "^4.0.1",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
+    "node-notifier": "^5.1.2",
     "nodemon": "^1.12.1",
     "opn": "^5.1.0",
     "sequelize": "^3.30.4",
@@ -22,11 +26,11 @@
     "babel-preset-env": "^1.6.1"
   },
   "scripts": {
-    "create:schema": "NODE_ENV=development node src/utils/createSchema/entry",
-    "init:project": "npm run create:schema && npm run seed",
-    "start:dev": "NODE_ENV=development nodemon src/server/entry.js --config nodemon.json",
-    "start:prod": "node server",
-    "seed": "NODE_ENV=development node src/seeders/entry",
-    "test": "NODE_ENV=test mocha 'src/**/+(__tests__|tests)/*.+(test|spec).js'"
+    "create:schema": "cross-env NODE_ENV=development node src/utils/createSchema/entry",
+    "init:project": "cross-env NODE_ENV=development npm run create:schema && npm run seed",
+    "start:dev": "cross-env NODE_ENV=development node src/server/entry.js --config nodemon.json",
+    "start:prod": "cross-env NODE_ENV=production node server",
+    "seed": "cross-env NODE_ENV=development node src/seeders/entry",
+    "test": "cross-env NODE_ENV=test mocha 'src/**/+(__tests__|tests)/*.+(test|spec).js'"
   }
 }

@@ -1,11 +1,11 @@
 
 <img width="150" alt="logo" src="https://user-images.githubusercontent.com/13956201/32232205-86a0a138-be25-11e7-9d41-46efd1cc4141.png">
 
-# SyntactiQL
+# TactiQL
 
 ## About this project
 
-SyntactiQL (pronounced Syntactical) was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _SyntactiQL_, which is nothing other than a coherent set of methods for creating all the necessary parts of a GraphQL server. In short, this project aims to provide a more customizable Backend-As-A-Library.
+TactiQL (pronounced Tactical) was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _TactiQL_, which is nothing other than a coherent set of methods for creating all the necessary parts of a GraphQL server. In short, this project aims to provide a more customizable Backend-As-A-Library.
 
 All you have to do is create your sequelize models, run the transformers, and start your server. With the example code, you can be testing queries in minutes. It creates your resolvers, DataLoaders, sequelize queries, etc.
 
@@ -39,9 +39,9 @@ For now, the project can only be cloned directly from github. I would like to ma
 
 ``` javascript
 
-git clone https://github.com/weatherfordmat/SyntactiQL.git
+git clone https://github.com/weatherfordmat/TactiQL.git
 
-cd SyntactiQL && yarn
+cd TactiQL && yarn
 
 // if you don't have yarn you can run
 npm install

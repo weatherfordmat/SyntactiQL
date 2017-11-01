@@ -9,7 +9,7 @@ import { pluralize, singularize } from '../strings'
 
 // config
 let options = JSON.parse(
-    fs.readFileSync(__dirname + '/../../../.syntactiqlrc', 'utf-8')
+    fs.readFileSync(__dirname + '/../../../.tactiqlrc', 'utf-8')
   )["config"];
 
 // config;
@@ -38,7 +38,7 @@ const buildDB = () => {
                     db[m].sequelize
                     .query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
                     .then(_ => {
-                        db[m].sync({force: true});
+                        db[m].sync();
                     })
                     .catch(e => error(e));
                     info(`\t Synced model ${models[index]}`);

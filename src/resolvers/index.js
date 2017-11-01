@@ -7,7 +7,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 // config
 let options = JSON.parse(
-    fs.readFileSync(__dirname + '/../../.syntactiqlrc', 'utf-8')
+    fs.readFileSync(__dirname + '/../../.tactiqlrc', 'utf-8')
   )["config"];
 
 const schemaFile = path.join(__dirname, `../schema/${options.schemaName}`);

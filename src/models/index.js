@@ -9,7 +9,7 @@ var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
 let options = JSON.parse(
-  fs.readFileSync(__dirname + '/../../.syntactiqlrc', 'utf-8')
+  fs.readFileSync(__dirname + '/../../.tactiqlrc', 'utf-8')
 )["config"];
 
 // determines whether you want to view MySQL logs;

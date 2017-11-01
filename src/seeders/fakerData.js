@@ -15,7 +15,7 @@ import db from '../models';
 const models = Object.keys(db).slice(0, Object.keys(db).length-2);
 
 let options = JSON.parse(
-    fs.readFileSync(__dirname + '/../../.syntactiqlrc', 'utf-8')
+    fs.readFileSync(__dirname + '/../../.tactiqlrc', 'utf-8')
   )["config"];
 
 const flattenFaker = () => {
