@@ -40,12 +40,12 @@ The CLI tool is almost done for quicker scaffolding and a package that can call 
 -public
 -schema
 -sequelize
-  --config
-    ---config.json
-    ---sequelize.js
-  --migrations
-  --models
-  --seeders
+    --config
+          ---config.json
+          ---sequelize.js
+    --migrations
+    --models
+    --seeders
 -node_modules
 ```
 
@@ -115,6 +115,20 @@ app.listen(PORT, () => {
 ```
 
 You can then open your browser at http://localhost:3000/graphiql
+
+## Methods
+
+_Loaders_ gives you an array of your loaders for each of your associations. For now, this isn't too helpful, but when this is integrated into a cloud system, we will be able to add hooks, custom foreign keys, etc.
+
+_CreateSchema_ creates your schema.graphql file from your sequelize models. Also syncs the database with the newest models.
+
+_ExecutableSchema_ takes a path to your schema file and creates an "executable schema," i.e. combines your data fetching with your type definitions.
+
+_CreateRandomSeedData_ this uses faker.js to populate your database. For now the mapping between fields is simplistic.
+
+_KoaGQL_ Pass in the path to the .graphql file and it creates the executable schema which can be used directly by Koa.
+
+_OnServerStart_ A notification for when the server has started. Provides a link to graphiql in dev mode.
 
 ## To-Do List
 - [ ] A Front-End For Editing Models;
