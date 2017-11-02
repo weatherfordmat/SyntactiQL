@@ -43,7 +43,20 @@ yarn add tactiql
 npm install tactiql --save
 ```
 
-You can then require the functions from the library. Here's an example:
+Make sure to create your schema by running:
+``` javascript
+let { CreateSchema  } = require('tactiql');
+
+CreateSchema('./schema/schema.graphql');
+```
+
+You can also add sample data that populates both the DB and the API by running the following
+``` javascript
+let { CreateRandomSeedData } = require('tactiql');
+
+CreateRandomSeedData();
+```
+
 
 ``` javascript
 const Koa = require('koa');
