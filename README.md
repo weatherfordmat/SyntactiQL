@@ -8,7 +8,7 @@ Builds A GraphQL Schema and Server from Your Database Models
 
 TactiQL (pronounced Tactical) was built from a frustation about the amount of boilerplate needed to get a reliable GraphQL backend up and running. So I built _TactiQL_, which is nothing other than a coherent set of methods for creating all the necessary parts of a GraphQL server. In short, this project aims to provide a more customizable Backend-As-A-Library.
 
-All you have to do is create your sequelize models, run the transformers, and start your server. With the example code, you can be testing queries in minutes. It creates your resolvers, DataLoaders, sequelize queries, etc.
+All you have to do is create your sequelize models, run the transformers (createSchema and createSeedData), and start your server. With the example code, you can be testing queries in minutes. It creates your resolvers, DataLoaders, sequelize queries, etc.
 
 ## Philosophy
 
@@ -28,39 +28,61 @@ _GraphQL_ I am optimistic about the future of GraphQL. Don't take this as an ind
 
 _DataLoader_ A great caching and batching tool for subqueries.
 
-_Instant Cloud Integration_ This service will seamlessly integrate with cloud service providers, starting with AWS.
+_Instant Cloud Integration_ This service will seamlessly integrate with cloud service providers, starting with AWS. This feature should be implemented by 2018.
 
 _Sequelize_ For now, I have coupled Sequelize to this project, but the file system is prepared for other ORMS. I would even like to integrate MongoDB in soon.
-
-_Mocha_ is a mature library for testing ndoe backends. 
 
 ## Getting Started
 
 For now, the project can only be cloned directly from github. I would like to make this a combination of a CLI tool for quicker scaffolding and a package that can call its utility functions. 
 
 ``` javascript
+yarn add tactiql
 
-git clone https://github.com/weatherfordmat/TactiQL.git
+// or if you don't use yarn
+npm install tactiql --save
+```
 
-cd TactiQL && yarn
+You can then require the functions from the library. Here's an example:
 
-// if you don't have yarn you can run
-npm install
+``` javascript
+const Koa = require('koa');
+const mount = require('koa-mount');
+const path = require('path');
 
-// make sure to have sequelize-cli intalled globally
-yarn add sequelize-cli mocha -g
+let { KoaGQL, OnServerStart } = require('tactiql');
+let { error, success, describe } = require('tactiql/lib/utils/log');
 
-// create your models
-sequelize model:create --name User --attributes name:string,state:boolean,birth:date,card:integer
+// constants;
+const PORT = process.env.PORT || 3000;
+const imagePath = path.join(__dirname, './public/logo.png');
 
-// this creates all the boilerplate needed for your server.
-npm run init:project
+const app = new Koa();
 
-// start dev server
-npm run start:dev
+/**
+ * This will have no effect if logging is turned off;
+ */
+app.use((ctx, next) => {
+    const start = Date.now();
+    return next()
+        .then(_ => {
+            const ms = Date.now() - start;
+            describe(`${ctx.method} ${ctx.url} - ${ms}ms`);
+        })
+        .catch(err => {
+            error(err);
+        })
+});
 
-// start the production server
-npm run start:prod
+app.use(mount(
+        '/graphql', 
+        KoaGQL('./schema/schema.graphql')
+));
+
+app.listen(PORT, () => {
+    success(`App listening on port ${PORT}`);
+    OnServerStart(imagePath, PORT);
+});
 ```
 
 ## To-Do List
@@ -71,7 +93,7 @@ npm run start:prod
 - [ ] Add Instant Cloud Integration;  
 - [ ] Write Logs to File System; 
 - [x] Add Logo 
-- [x] Make Schema File Name Configurable
+- [ ] Make Schema File Name Configurable
 
 ## Gotchas
 
