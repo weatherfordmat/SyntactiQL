@@ -57,6 +57,7 @@ let { CreateRandomSeedData } = require('tactiql');
 CreateRandomSeedData();
 ```
 
+Right now, the library supports koa servers. A simple server might look like the following:
 
 ``` javascript
 const Koa = require('koa');
