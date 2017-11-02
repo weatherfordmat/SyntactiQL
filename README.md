@@ -34,7 +34,19 @@ _Sequelize_ For now, I have coupled Sequelize to this project, but the file syst
 
 ## Getting Started
 
-For now, the project can only be cloned directly from github. I would like to make this a combination of a CLI tool for quicker scaffolding and a package that can call its utility functions. 
+The CLI tool is almost done for quicker scaffolding and a package that can call its utility functions. For now, the directory structure is opinionated:
+
+```
+-public
+-schema
+-sequelize
+  --config
+    ---config.json
+    ---sequelize.js
+  --migrations
+  --models
+  --seeders
+```
 
 ``` javascript
 yarn add tactiql
@@ -98,6 +110,8 @@ app.listen(PORT, () => {
     OnServerStart(imagePath, PORT);
 });
 ```
+
+You can then open your browser at http://localhost:3000/graphiql
 
 ## To-Do List
 - [ ] A Front-End For Editing Models;
