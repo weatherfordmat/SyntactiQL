@@ -8,9 +8,14 @@ import path from 'path';
  */
 
 
-let config = JSON.parse(
-    fs.readFileSync(__dirname + '/../../.tactiqlrc', 'utf-8')
-)["config"];
+let config =  {
+    "colors": true,
+    "logging": ["error", "describe", "info", "warning", "success"],
+    "dbLogs": true,
+    "fakerCount": 9500,
+    "schemaName": "schema.graphql",
+    "sequelize": true
+}
 
 export const error = (s) => logWrapper('error', chalk.red.bold, s)
 
@@ -28,7 +33,7 @@ const pad = (s) => {
 }
 
 const loggingLevel = (colors, included, cb, s) => {
-    if (colors && included && process.env.NODE_ENV !== 'test') {
+    if (colors) {
         return cb();
     } else if (!included) {
         return null;

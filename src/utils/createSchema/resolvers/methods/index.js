@@ -1,4 +1,4 @@
-import db from '../../../../../sequelize/models';
+import db from '../../models';
 
 // utilities;
 import orderBy from 'lodash.orderby';

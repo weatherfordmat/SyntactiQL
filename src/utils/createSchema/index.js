@@ -1,36 +1,33 @@
 import Sequelize from 'sequelize';
 import fs from 'fs';
 import path from 'path';
-import db from '../../models';
+import db from '../../../../../sequelize/models';
 
 // utilities;
 import { error, describe, info, success, warning } from '../../utils/log';
 import { pluralize, singularize } from '../strings'
 
-// config
-let options = JSON.parse(
-    fs.readFileSync(__dirname + '/../../../.tactiqlrc', 'utf-8')
-  )["config"];
+// // config
+// let options = JSON.parse(
+//     fs.readFileSync('../../../../../.tactiqlrc', 'utf-8')
+//   )["config"];
 
 // config;
-import config from '../../config/config.json';
+import config from '../../../../../sequelize/config/config.json';
 const stage = process.env.NODE_ENV;
 const models = Object.keys(db).slice(0, Object.keys(db).length-2);
-
-// data;
-import { posts, users } from '../../seeders/fakerData';
 
 /**
  * Imports sequelize instance;
  */
-import sequelize from '../../config/sequelize';
+import sequelize from '../../../../../sequelize/config/sequelize';
 
 /**
  * Test the sequelize connection;
  * Resets and clears table data;
  */
-const buildDB = () => {
-    sequelize.authenticate()
+const buildDB = async () => {
+    await sequelize.authenticate()
         .then(_ => success('Connection Successful'))
         .then(_ => {
             models
@@ -38,7 +35,7 @@ const buildDB = () => {
                     db[m].sequelize
                     .query('SET FOREIGN_KEY_CHECKS = 0', {raw: true})
                     .then(_ => {
-                        db[m].sync();
+                        db[m].sync({force: true});
                     })
                     .catch(e => error(e));
                     info(`\t Synced model ${models[index]}`);
@@ -149,18 +146,15 @@ let schema = models.map((m, index) => {
 });
 
 // the file name should be configurable;
-(function main() {
-    if (process.env.NODE_ENV !== 'test') {
-        buildDB();
-        let file = path.join(__dirname, `../../schema/${options.schemaName}`);
-        fs.writeFile(file, '', () => describe('Cleared Old Contents'));
-        let stream = fs.createWriteStream(file, {flags:'a'});
+export const CreateSchema = async (writeTo) => {
+        await fs.writeFile(writeTo, '', () => describe('Cleared Old Contents'));
+        await buildDB();
+        let stream = fs.createWriteStream(writeTo, {flags:'a'});
         schema.map((el, i) => {
             stream.write(el);
             if (i + 1 === schema.length) {
-                success(`\nBuilt ${file}`);
+                success(`\nBuilt ${writeTo}`);
                 stream.end();
             }
         });
-    }
-})();
+}

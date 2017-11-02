@@ -36,7 +36,7 @@ _Mocha_ is a mature library for testing ndoe backends.
 
 ## Getting Started
 
-For now, the project can only be cloned directly from github. I would like to make this a CLI tool for quicker scaffolding.
+For now, the project can only be cloned directly from github. I would like to make this a combination of a CLI tool for quicker scaffolding and a package that can call its utility functions. 
 
 ``` javascript
 

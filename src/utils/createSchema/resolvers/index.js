@@ -1,20 +1,17 @@
 import fs from 'fs';
 import path from 'path';
-import db from '../../../../sequelize/models';
+import db from '../models';
 
 // graphql
 import { makeExecutableSchema } from 'graphql-tools';
-import { error } from '../utils/log';
 
 // config
-let options = {
-    "colors": true,
-    "logging": ["error", "describe", "info", "warning", "success"],
-    "dbLogs": true,
-    "fakerCount": 9500,
-    "schemaName": "schema.graphql",
-    "sequelize": true
-}
+let options = JSON.parse(
+    fs.readFileSync(__dirname + '/../../.tactiqlrc', 'utf-8')
+  )["config"];
+
+const schemaFile = path.join(__dirname, `../schema/${options.schemaName}`);
+const typeDefs = fs.readFileSync(schemaFile, 'utf8');
 
 // import Instance of store;
 import store from '../store';
@@ -42,16 +39,7 @@ Object.keys(associations).map(m => {
     resolvers[m] = associations[m];
 });
 
-const ExecutableSchema = (types) => {
-    const typeDefs = fs.readFileSync(types, 'utf8');
-    if (typeDefs.length === 0) {
-        error('Run CreateSchema before running server');
-    } else {
-        return makeExecutableSchema({
-            typeDefs,
-            resolvers
-        });
-    }
-}
-
-export default ExecutableSchema;
+export default makeExecutableSchema({ 
+    typeDefs, 
+    resolvers
+});

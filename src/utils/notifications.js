@@ -1,7 +1,7 @@
 import notifier from 'node-notifier';
 import opn from 'opn';
 
-export const onServerStart = (img, port) => {
+export const OnServerStart = (img, port) => {
     if (process.env.NODE_ENV === 'development') {
         notifier.notify({
             title: 'Dev Server Started!',
@@ -20,3 +20,5 @@ export const onServerStart = (img, port) => {
         });
     }
 }
+
+export default OnServerStart;
