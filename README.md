@@ -1,7 +1,8 @@
 
-<img width="150" alt="logo" src="https://user-images.githubusercontent.com/13956201/32232205-86a0a138-be25-11e7-9d41-46efd1cc4141.png">
-
 # TactiQL
+## Builds A GraphQL Schema and Server from Your Database Models
+
+<img width="150" alt="logo" src="https://user-images.githubusercontent.com/13956201/32232205-86a0a138-be25-11e7-9d41-46efd1cc4141.png">
 
 ## About this project
 

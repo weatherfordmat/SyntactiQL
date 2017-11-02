@@ -1,6 +1,6 @@
 {
   "name": "tactiql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "chalk": "^2.3.0",
     "cross-env": "^5.1.1",
