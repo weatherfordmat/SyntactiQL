@@ -48,6 +48,8 @@ The CLI tool is almost done for quicker scaffolding and a package that can call 
   --seeders
 ```
 
+Installing the package is simple:
+
 ``` javascript
 yarn add tactiql
 
