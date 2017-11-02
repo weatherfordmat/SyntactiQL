@@ -46,6 +46,7 @@ The CLI tool is almost done for quicker scaffolding and a package that can call 
   --migrations
   --models
   --seeders
+-node_modules
 ```
 
 Installing the package is simple:
