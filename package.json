@@ -7,6 +7,18 @@
   "author": {
     "name": "Matthew B. Weatherford"
   },
+  "keywords": [
+    "graphql",
+    "node",
+    "koa",
+    "aws",
+    "sequelize",
+    "mysql",
+    "postgres",
+    "database",
+    "dataloader",
+    "graphiql"
+  ],
   "version": "0.1.6",
   "license": "MIT",
   "devDependencies": {
