@@ -10,6 +10,8 @@ TactiQL (pronounced Tactical) was built from a frustation about the amount of bo
 
 All you have to do is create your sequelize models, run the transformers (createSchema and createSeedData), and start your server. With the example code, you can be testing queries in minutes. It creates your resolvers, DataLoaders, sequelize queries, etc.
 
+Check out the sample project: [Sample Demo](https://github.com/weatherfordmat/TactiQL-Sample)
+
 ## Philosophy
 
 The parts of a well designed program are typically modular and de-coupled. Replacing a part of a program which is too tightly bound to another part spells trouble for maintainers.
