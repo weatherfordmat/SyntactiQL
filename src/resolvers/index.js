@@ -6,16 +6,6 @@ import db from '../../../../sequelize/models';
 import { makeExecutableSchema } from 'graphql-tools';
 import { error } from '../utils/log';
 
-// config
-let options = {
-    "colors": true,
-    "logging": ["error", "describe", "info", "warning", "success"],
-    "dbLogs": true,
-    "fakerCount": 9500,
-    "schemaName": "schema.graphql",
-    "sequelize": true
-}
-
 // import Instance of store;
 import store from '../store';
 

@@ -1,6 +1,10 @@
 import notifier from 'node-notifier';
 import opn from 'opn';
 
+/**
+ * An extra feature. If this is useful, we can add more event based notifications.
+ */
+
 export const OnServerStart = (img, port) => {
     if (process.env.NODE_ENV === 'development') {
         notifier.notify({
@@ -15,7 +19,7 @@ export const OnServerStart = (img, port) => {
             closeLabel: 'Close'
         });
     
-        notifier.on('click', (notifierObject, options) => {
+        notifier.on('click', () => {
             opn(`http://localhost:${port}/graphql`);
         });
     }

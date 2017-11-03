@@ -22,7 +22,7 @@
     "sequelize": "^3.30.4"
   },
   "bin": {
-    "tactiql": "entry.js"
+    "tactiql": "index.js"
   },
   "scripts": {
     "babel:watch": "npx babel src --out-dir lib --watch",

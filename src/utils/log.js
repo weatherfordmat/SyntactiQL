@@ -7,16 +7,6 @@ import path from 'path';
  * I will add support for keeping .log files.
  */
 
-
-let config =  {
-    "colors": true,
-    "logging": ["error", "describe", "info", "warning", "success"],
-    "dbLogs": true,
-    "fakerCount": 9500,
-    "schemaName": "schema.graphql",
-    "sequelize": true
-}
-
 export const error = (s) => logWrapper('error', chalk.red.bold, s)
 
 export const info = (s) => logWrapper('info', chalk.blue, s)
@@ -43,6 +33,10 @@ const loggingLevel = (colors, included, cb, s) => {
 }
 
 const logWrapper = (name, _c, s) => {
+    let files = fs.readdirSync('./', 'utf-8');
+    let idx = files.indexOf('.tactiqlrc');
+    let t = files[idx]
+    let config = JSON.parse(fs.readFileSync(t, 'utf-8'))["config"];
     return loggingLevel(
                 config.colors, 
                 config.logging.includes(name), 

@@ -14,14 +14,10 @@ import db from '../../../../../sequelize/models';
 
 const models = Object.keys(db).slice(0, Object.keys(db).length-2);
 
-let options = {
-    "colors": true,
-    "logging": ["error", "describe", "info", "warning", "success"],
-    "dbLogs": true,
-    "fakerCount": 9500,
-    "schemaName": "schema.graphql",
-    "sequelize": true
-}
+let files = fs.readdirSync('./', 'utf-8');
+let idx = files.indexOf('.tactiqlrc');
+let t = files[idx]
+let options = JSON.parse(fs.readFileSync(t, 'utf-8'))["config"];
 
 const flattenFaker = () => {
     let cols = Object.getOwnPropertyNames(faker);

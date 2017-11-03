@@ -51,7 +51,7 @@ The CLI tool is almost done for quicker scaffolding and a package that can call 
 
 Installing the package is simple:
 
-```
+``` javascript
 yarn add tactiql
 
 // or if you don't use yarn
@@ -59,14 +59,14 @@ npm install tactiql --save
 ```
 
 Make sure to create your schema by running:
-```
+``` javascript
 let { CreateSchema  } = require('tactiql');
 
 CreateSchema('./schema/schema.graphql');
 ```
 
 You can also add sample data that populates both the DB and the API by running the following
-```
+``` javascript
 let { CreateRandomSeedData } = require('tactiql');
 
 CreateRandomSeedData();
@@ -74,7 +74,7 @@ CreateRandomSeedData();
 
 Right now, the library supports koa servers. A simple server might look like the following:
 
-```
+``` javascript
 const Koa = require('koa');
 const mount = require('koa-mount');
 const path = require('path');
@@ -144,7 +144,7 @@ _OnServerStart_ A notification for when the server has started. Provides a link 
 
 When defining an association on a class model in Sequelize, you _must_ follow a pattern. _HasOne_ and _BelongsTo_ associations should use an alias, and the alias should include a hyphen. The word before the hyphen is the name to be used in Graphql queries, while the word after the dash is what it references.
 
-```
+``` javascript
 {
     classMethods: {
       associate: function(models) {
@@ -155,7 +155,7 @@ When defining an association on a class model in Sequelize, you _must_ follow a 
 ```
 
 Note that if you don't want to use an alias in your GraphQL queries, you should can write your code in the following way:
-```
+``` javascript
 {
     classMethods: {
       associate: function(models) {

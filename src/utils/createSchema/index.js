@@ -7,11 +7,6 @@ import db from '../../../../../sequelize/models';
 import { error, describe, info, success, warning } from '../../utils/log';
 import { pluralize, singularize } from '../strings'
 
-// // config
-// let options = JSON.parse(
-//     fs.readFileSync('../../../../../.tactiqlrc', 'utf-8')
-//   )["config"];
-
 // config;
 import config from '../../../../../sequelize/config/config.json';
 const stage = process.env.NODE_ENV;

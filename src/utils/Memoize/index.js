@@ -1,3 +1,6 @@
+/**
+ * Simple constructor for creating a caching layer;
+ */
 class Memoize {
     constructor(data) {
         this.data = {}
