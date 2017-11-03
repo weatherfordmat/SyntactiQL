@@ -37,6 +37,7 @@ _Sequelize_ For now, I have coupled Sequelize to this project, but the file syst
 The CLI tool is almost done for quicker scaffolding and a package that can call its utility functions. For now, the directory structure is opinionated:
 
 ```
+
 -public
 -schema
 -sequelize
@@ -47,7 +48,25 @@ The CLI tool is almost done for quicker scaffolding and a package that can call 
     --models
     --seeders
 -node_modules
+
 ```
+
+The settings for this library should be added in a .tactiqlrc file at the root of your project.
+
+``` javascript
+{
+    "config": {
+        "colors": true, // log colors to stdout
+        "logging": ["error", "describe", "info", "warning", "success"], // which types of logs you want
+        "dbLogs": true, // do you want to see the actual SQL query run
+        "fakerCount": 9500, // how much fake data to generate
+        "schemaName": "schema.graphql", // the same of your schema file
+        "sequelize": true // whether you are using sequelize
+    }
+}
+```
+
+
 
 Installing the package is simple:
 
