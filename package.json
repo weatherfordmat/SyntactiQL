@@ -37,7 +37,7 @@
     "lodash.orderby": "^4.6.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^8.0.1",
     "opn": "^5.1.0",
     "sequelize": "^3.30.4"
   },
